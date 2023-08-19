@@ -14,8 +14,6 @@ $update = json_decode(file_get_contents("php://input"),true);
     $first_name = $update['message']['from']['first_name'];
     $message_id = $update['message']['message_id'];
 
-
-
 function exec_curl_request($handle){
     $response = curl_exec($handle);
     if ($response === false) {
@@ -73,8 +71,7 @@ function bot($method, $parameters){
     return exec_curl_request($handle);
 }
 
-
-function sendmessage($chat_id,$text,$keyboard = "false",$message_id = null){
+function sendmessage($chat_id,$text,$keyboard = "false",$message_id = "false"){
    return bot('sendMessage',[
         'chat_id'       => $chat_id,
         'text'          => $text,
@@ -84,7 +81,6 @@ function sendmessage($chat_id,$text,$keyboard = "false",$message_id = null){
         'parse_mode'    =>'MarkDown'
     ]);
 }
-
 
 if(isset($update['message']) and $chat_type == "private"){
 
