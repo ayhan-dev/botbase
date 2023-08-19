@@ -20,3 +20,6 @@ Telegram bot development base
 
  6- `Lua` 
  [- bot Lua](https://github.com/ayhan-dev/botbase/Lua)
+
+7- `Golang` 
+[- bot Go](https://github.com/ayhan-dev/botbase/Golang)
