@@ -16,4 +16,4 @@ Telegram bot development base
  [bot C#](http://github.com/ayhan-dev/botbase/CSharp) ```Install-Package Telegram.Bot```
 
  5- `Python` 
- [bot python](http://github.com/ayhan-dev/botbase/Python)
+ [bot python](http://github.com/ayhan-dev/botbase/Python) ```pip install pyrogram```
