@@ -17,3 +17,6 @@ Telegram bot development base
 
  5- `Python` 
  [- bot python](http://github.com/ayhan-dev/botbase/Python) ```pip install pyrogram```
+
+ 6- `Lua` 
+ [- bot Lua](https://github.com/ayhan-dev/botbase/Lua)
