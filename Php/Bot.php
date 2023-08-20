@@ -71,7 +71,7 @@ function bot($method, $parameters){
     return exec_curl_request($handle);
 }
 
-function sendmessage($chat_id,$text,$keyboard = "false",$message_id = "false"){
+function sendmessage($chat_id,$text,$keyboard = false,$message_id = false){
    return bot('sendMessage',[
         'chat_id'       => $chat_id,
         'text'          => $text,
