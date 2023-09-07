@@ -26,4 +26,4 @@ Telegram bot development base
 
 
 
-   Telegram: t.me/Galaxy_Deve - Dev: @Ayhan_Dev
+   [!Telegram:](https://t.me/Galaxy_Deve) - [Dev:](https://Ayhan_Dev)
