@@ -2,16 +2,22 @@ require 'telegram/bot'
 
 token = '#' #token
 Telegram::Bot::Client.run(token) do |bot|
-  puts "Bot has started!"
+  puts "Bot started!"
 
   bot.listen do |message|
     case message.text
     when '/start'
-    bot.api.send_message(chat_id: message.chat.id, text: "HI. #{message.from.first_name}")
-  when '/settings'
-      bot.api.send_message(chat_id: message.chat.id, text: "setting bot ")
+      buttons = [
+        Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Button AS', callback_data: 'button-AS'),
+        Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Button AZ', callback_data: 'button-AZ')
+      ]
+      keyboard = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: buttons)
+  bot.api.send_message(chat_id: message.chat.id, text: "HI. #{message.from.first_name}",reply_markup: kryboard)
+
+    when '/stop'
+      bot.api.send_message(chat_id: message.chat.id, text: "درخواست شما دریافت شد. خداحافظ!")
     else
-      bot.api.send_message(chat_id: message.chat.id, text: "noting commend")
+      bot.api.send_message(chat_id: message.chat.id, text: "من فقط به دستور /start و /stop پاسخ می‌دهم.")
     end
   end
 end
