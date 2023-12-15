@@ -24,6 +24,8 @@ Telegram bot development base
 7- `Golang` 
 [- bot Go](https://github.com/ayhan-dev/botbase/Golang)
 
+8- `ruby`
+[- bot ruby](https://github.com/ayhan-dev/botbase/tree/main/ruby)
 
 
    [!Telegram:](https://t.me/Galaxy_Deve) - [Dev:](https://Ayhan_Dev)
