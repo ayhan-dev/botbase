@@ -21,3 +21,16 @@ Telegram::Bot::Client.run(token) do |bot|
     end
   end
 end
+
+
+
+  bot.listen do |callback_query|
+    case callback_query.data
+    when 'button-AS'
+      bot.api.send_message(chat_id: callback_query.message.chat.id, text: 'ok. join @ayhan_GY!',reply_markup: kryboard)
+    when 'button-AZ'
+      bot.api.send_message(chat_id: callback_query.message.chat.id, text: 'ok///: @Galaxy_Deve',reply_markup: kryboard)
+    end
+  end
+end
+
