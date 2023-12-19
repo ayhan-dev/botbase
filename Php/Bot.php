@@ -1,90 +1,133 @@
 <?php
-
-error_reporting(0);
-define('API_KEY','6175:AA*****');
-$API_URL   = 'https://api.telegram.org/bot'.API_KEY. '/';
-
-$update = json_decode(file_get_contents("php://input"),true);
-
-    $message    = $update['message'];
-    $from_id    = $update['message']['from']['id'];
-    $chat_id    = $update['message']['chat']['id'];
-    $chat_type  = $update['message']['chat']['type'];
-    $text       = $message['text'];
-    $first_name = $update['message']['from']['first_name'];
-    $message_id = $update['message']['message_id'];
-
-function exec_curl_request($handle){
-    $response = curl_exec($handle);
-    if ($response === false) {
-        $errno = curl_errno($handle);
-        $error = curl_error($handle);
-        error_log("Curl returned error $errno: $error\n");
-        curl_close($handle);
-        return false;
-    }
-    $http_code = intval(curl_getinfo($handle, CURLINFO_HTTP_CODE));
-    curl_close($handle);
-    if ($http_code >= 500) {
-        sleep(10);
-        return false;
-    } elseif ($http_code != 200) {
-        $response = json_decode($response, true);
-        error_log("Request has failed with error {$response['error_code']}: {$response['description']}\n");
-        if ($http_code == 401) {
-            throw new Exception('Invalid access token provided');
+class bot {
+    private $__token;
+    public function __construct($token = null, $admin = null, $text = null) {
+        @system("clear");
+        if (!file_exists(".offset")) {
+            file_put_contents(".offset", 0);
         }
-        return false;
-    } else {
-        $response = json_decode($response, true);
-        if (isset($response['description'])) {
-            error_log("Request was successfull: {$response['description']}\n");
-        }
-        $response = $response['result'];
-    }
-    return $response;
-}
-
-function bot($method, $parameters){
-    global $API_URL;
-    if (!is_string($method)) {
-        error_log("Method name must be a string\n");
-        return false;
-    }
-    if (!$parameters) {
-        $parameters = array();
-    } elseif (!is_array($parameters)) {
-        error_log("Parameters must be an array\n");
-        return false;
-    }
-    foreach ($parameters as $key => &$val) {
-        if (!is_numeric($val) && !is_string($val) && !is_a($val, 'CURLFile')) {
-            $val = json_encode($val);
+        $connected = @fsockopen("www.google.com", 80);
+        if (!$connected) {
+            throw new Exception("\033[0;31m"."Error To Connect "."\033[1;32m"."api.telegram.org");
+            fclose($connected);
+            exit;
+        } else {
+            if (is_null($token)) {
+                $this->__token = readline($color->brown."input bot token : "."\033[1;32m");
+            } else {
+                $this->__token = $token;
+                if (!is_null($admin)) {
+                    $this->sendMessage([
+                        'chat_id' => $admin,
+                        'text' => $text,
+                        'parse_mode' => 'html'
+                    ]);
+                }
+            }
+            while (true) {
+                $offset = file_get_contents(".offset");
+                @$update = $this->did('getUpdates', [
+                    "offset" => $offset,
+                    "limit" => 100,
+                    "timeout" => 0
+                ])["result"];
+                try {
+                    foreach ($update as $fromServer) {
+                        $update_id = $fromServer["update_id"];
+                        file_put_contents('.offset', $update_id +1);
+                        $this->onUpdate($fromServer);
+                    }
+                }catch(Exception $e) {}
+            }
         }
     }
-    $url = $API_URL . $method;
-    $handle = curl_init($url);
-    curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);
-    curl_setopt($handle, CURLOPT_TIMEOUT, 60);
-    curl_setopt($handle, CURLOPT_POSTFIELDS, $parameters);
-    return exec_curl_request($handle);
+    
+    public function did($method, $data = []) { 
+        $ch = curl_init(); 
+        curl_setopt($ch, CURLOPT_URL, "https://api.telegram.org/bot".$this->__token."/$method"); 
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data); 
+        $exec = curl_exec($ch); 
+        $exec = json_decode($exec, true); 
+        if ($exec['ok'] == false) { 
+            throw new Exception("\033[0;31mAPI : ".$exec['error_code']." ".$exec['description']); 
+        } else { 
+            return $exec; 
+        } 
+    }
+
+
+    
+    public function forwardMessage($data = []) {
+        return $this->did("forwardMessage", $data);
+    }
+    public function sendMessage($data = []) {
+        return $this->did("sendMessage", $data);
+    }
+    public function sendPhoto($data = []) {
+        return $this->did("sendPhoto", $data);
+    }
+    public function sendAudio($data = []) {
+        return $this->did("sendAudio", $data);
+    }
+    public function sendVoice($data = []) {
+        return $this->did("sendVoice", $data);
+    }public function sendPoll($data = []) {
+    return $this->did("sendPoll", $data);
+}
+public function sendLocation($data = []) {
+    return $this->did("sendLocation", $data);
+}
+public function editMessageText($data = []) {
+    return $this->did("editMessageText", $data);
+}public function editMessageCaption($data = []) {
+    return $this->did("editMessageCaption", $data);
+}
+public function editMessageReplyMarkup($data = []) {
+    return $this->did("editMessageReplyMarkup", $data);
+}
+public function sendDocument($data = []) {
+    return $this->did("sendDocument", $data);
+}
+public function sendContact($data = []) {
+    return $this->did("sendContact", $data);
+}
+public function sendSticker($data = []) {
+    return $this->did("sendSticker", $data);
+}
+public function sendAnimation($data = []) {
+    return $this->did("sendAnimation", $data);
+}
+public function sendVenue($data = []) {
+    return $this->did("sendVenue", $data);
+}
+public function sendDice($data = []) {
+    return $this->did("sendDice", $data);
+}
+public function sendChatAction($data = []) {
+    return $this->did("sendChatAction", $data);
+}
+public function getFile($data = []) {
+    return $this->did("getFile", $data);
+}
+public function sendMediaGroup($data = []) {
+    return $this->did("sendMediaGroup", $data);
+}
+public function sendVideoNote($data = []) {
+    return $this->did("sendVideoNote", $data);
+}
+public function sendInvoice($data = []) {
+    return $this->did("sendInvoice", $data);
+}
+public function sendGame($data = []) {
+    return $this->did("sendGame", $data);
 }
 
-function sendmessage($chat_id,$text,$keyboard = false,$message_id = false){
-   return bot('sendMessage',[
-        'chat_id'       => $chat_id,
-        'text'          => $text,
-        'reply_markup'  => $keyboard,
-        'message_id'    => $message_id,
-        'disable_web_page_preview' => true,
-        'parse_mode'    =>'MarkDown'
-    ]);
+public function sendVenue($data = []) {
+    return $this->did("sendVenue", $data);
 }
 
-if(isset($update['message']) and $chat_type == "private"){
 
-    if ($text == '/start'){
-    sendmessage ($from_id,"hi ayhan - @Ayhan_dev");
-}
+
+
 }
