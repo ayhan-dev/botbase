@@ -1,6 +1,9 @@
 # bot base
-
-Telegram bot development base 
+<p align="center">
+  <img src="logo.png" width="180" height="180">
+  <h1 align="center">Telegram bot development bas</h1>
+</p
+e 
 
 
  1- `nodejs` 
