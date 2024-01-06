@@ -1,0 +1,3 @@
+aiogram
+telegram
+asyncio
