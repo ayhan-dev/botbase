@@ -7,25 +7,25 @@ e
 
 
  1- `nodejs` 
- [- bot Nodejs](http://github.com/ayhan-dev/botbase/NODELS)
+ [- bot Nodejs](http://github.com/ayhan-dev/botbase/tree/main/NODELS)
 
  2- `PHP` 
- [- bot Php](http://github.com/ayhan-dev/botbase/Php)
+ [- bot Php](http://github.com/ayhan-dev/botbase/tree/main/Php)
 
  3- `Kotlin` 
- [- bot Kotlin](http://github.com/ayhan-dev/botbase/Kotlin)
+ [- bot Kotlin](http://github.com/ayhan-dev/botbase/tree/main/Kotlin)
 
  4- `C#` 
- [- bot C#](http://github.com/ayhan-dev/botbase/CSharp) ```Install-Package Telegram.Bot```
+ [- bot C#](http://github.com/ayhan-dev/botbase/tree/main/CSharp) ```Install-Package Telegram.Bot```
 
  5- `Python` 
- [- bot python](http://github.com/ayhan-dev/botbase/Python) ```pip install pyrogram```
+ [- bot python](http://github.com/ayhan-dev/botbase/tree/main/Python) ```pip install pyrogram```
 
  6- `Lua` 
- [- bot Lua](https://github.com/ayhan-dev/botbase/Lua)
+ [- bot Lua](https://github.com/ayhan-dev/botbase/tree/main/Lua)
 
 7- `Golang` 
-[- bot Go](https://github.com/ayhan-dev/botbase/Golang)
+[- bot Go](https://github.com/ayhan-dev/botbase/tree/main/Golang)
 
 8- `ruby`
 [- bot ruby](https://github.com/ayhan-dev/botbase/tree/main/ruby)
