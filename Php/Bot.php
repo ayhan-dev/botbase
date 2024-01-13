@@ -2,7 +2,7 @@
 
 include 'lib.php';
 
-$token = "6195507430:AAEQAVfqacaizHINgCYkVGPEQ5MQWJ_tuR8";
+$token = "6195507430:AAEQAVfMQWJ_tuR8";
 
 try {
     class las_bot extends Bot {
