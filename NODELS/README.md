@@ -6,6 +6,8 @@ To create a Telegram bot using Node.js, you can use the "node-telegram-bot-api" 
 Here are the steps to create a simple Telegram bot:
 
 
+
+
 1 **Create a telegram bot**
 
 - Open the Telegram app and search for the "BotFather" bot.
@@ -13,13 +15,22 @@ Here are the steps to create a simple Telegram bot:
 - Follow the instructions to set a name and username for your bot, and BotFather will provide you with a token.
 
 
+
+
+
 2 **Install Node.js and npm:**
 
 - Make sure you have Node.js and npm installed on your machine.
 
+
+
+
 3 **Initialize Your Node.js Project:**
 
 - Create a new directory for your project and run npm init to initialize a new Node.js project. Follow the prompts to set up your project.
+
+
+
 
 4 **Install the node-telegram-bot-api library:** 
 
@@ -29,6 +40,9 @@ Here are the steps to create a simple Telegram bot:
 npm install node-telegram-bot-api
 
 ```
+
+
+
 
 5 **Write Your Bot Code:**
 
@@ -49,6 +63,9 @@ bot.onText(/\/start/, (msg) => {
 
 
 ```
+
+
+
 
 6 **Run Your Bot:**
 
