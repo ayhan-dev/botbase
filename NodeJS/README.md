@@ -93,3 +93,45 @@ node bot.js
 
 
 Your bot should now be running and responding to the /start command as well as any incoming messages.
+
+
+
+
+
+## Run this project 
+
+- Set token : 
+
+```
+mv .env.example .env
+```
+
+```
+TOKEN="YOUR_TOKEN"
+```
+
+<br><br>
+
+
+- Clone Repository 
+
+```
+git clone git@github.com:MohamadMirzaeiDev/botbase.git
+``` 
+
+<br><br>
+
+- Install Dependencies :
+
+```
+cd botbase
+```
+
+```
+npm install 
+```
+
+
+```
+npm start 
+```
