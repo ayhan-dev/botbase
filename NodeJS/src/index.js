@@ -1,7 +1,10 @@
 const TelegramBot   = require('node-telegram-bot-api');
 const request       = require('request');
 
-const token         = '6317234969:AA....';
+const config = require('dotenv').config();
+
+
+const token         = process.env.API_TOKEN;
 const bot           = new TelegramBot(token,{polling:true});
  
 function getUserData(chat) {
@@ -48,3 +51,6 @@ bot.on('callback_query', async (callbackQuery) => {
 
   }
 })
+
+
+console.log('running app')
