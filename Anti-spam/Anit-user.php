@@ -51,11 +51,9 @@ function exe_cute_Curl_Request($handle){
 
 function bot($method, $parameters){
     global $API_URL;
-
     if (!is_string($method)) {
         throw new Exception("Method name must be a string\n");
     }
-
     if (!$parameters) {
         $parameters = array();
     } elseif (!is_array($parameters)) {
@@ -84,26 +82,15 @@ function bot($method, $parameters){
 
 
 
-function sendMessage($chatId, $text, $keyboard = false, $messageId = false) {
-    $parameters = array(
-        'chat_id' => $chatId,
-        'text' => $text,
-    );
-    if ($keyboard) {
-        $parameters['reply_markup'] = $keyboard;
-    }
-
-    if ($messageId) {
-        $parameters['reply_to_message_id'] = $messageId;
-    }
-
+function sendMessage($chatId, $text) {
+    $parameters = array('chat_id' => $chatId,'text' => $text);
     return bot('sendMessage', $parameters);
 }
 
 
 if (isset($update['message']) && $chat_type == "private") {
     if (in_array($text, ['/start', 'start'])) {
-        sendMessage($from_id, "hi - https://github.com/ayhan-dev/Anit-spam/Anit-user.php");
+        sendMessage($from_id, "hi mr");
     }
 }
 
