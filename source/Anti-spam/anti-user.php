@@ -1,5 +1,5 @@
 <?php
-
+// https://github.com/ayhan-dev/bot_telegram_php
 error_reporting(0);
 include "telegram.php";
 
